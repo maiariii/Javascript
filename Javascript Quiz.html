@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple JavaScript Quiz</title>
+    <style>
+        body {
+            font-family: Courier, sans-serif;
+            background-color: #FFE0B5; /* Updated background color */
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        #container {
+            width: 50%;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            margin: 50px auto;
+        }
+        #title {
+            background-color: #D8AE7E; /* Updated title background color */
+            align-items: center;
+            padding: 10px;
+            border-radius: 10px;
+            color: white;
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            color: #666;
+        }
+        form {
+            text-align: left;
+        }
+        .question-box {
+            background: #F8C794; /* Updated question box background color */
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+            margin: 10px;
+        }
+        input[type="radio"] {
+            margin: 5px;
+        }
+        input[type="submit"] {
+            background: #007BFF;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+            transition: background 0.3s;
+        }
+        input[type="submit"]:hover {
+            background: #0056b3;
+        }
+        footer {
+            margin-top: 20px;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <header>
+            <h1 id="title"> Quiz </h1>
+            <p>Test your knowledge about <strong>ALLY</strong></p>
+        </header>
+        <section>
+            <form name="quizForm" onsubmit="return submitAnswers()">
+                <div class="question-box">1. Which do you think I prefer?</div>
+                <input type="radio" name="q1" value="a"> Sweet<br>
+                <input type="radio" name="q1" value="b"> Spicy<br>
+                <input type="radio" name="q1" value="c"> Bitter<br>
+                <input type="radio" name="q1" value="d"> Sour<br>
+
+                <div class="question-box">2. Who is my favorite anime character?</div>
+                <input type="radio" name="q2" value="a"> Zoro<br>
+                <input type="radio" name="q2" value="b"> Kuroko<br>
+                <input type="radio" name="q2" value="c"> Kirito<br>
+                <input type="radio" name="q2" value="d"> Conan<br>
+
+                <div class="question-box">3. If I could travel anywhere in the world, where would it be?</div>
+                <input type="radio" name="q3" value="a"> Japan<br>
+                <input type="radio" name="q3" value="b"> Switzerland<br>
+                <input type="radio" name="q3" value="c"> USA<br>
+                <input type="radio" name="q3" value="d"> South Korea<br>
+
+                <div class="question-box">4. What is my go-to comfort food?</div>
+                <input type="radio" name="q4" value="a"> Pizza 🍕<br>
+                <input type="radio" name="q4" value="b"> Ice Cream 🍦<br>
+                <input type="radio" name="q4" value="c"> Ramen 🍜<br>
+                <input type="radio" name="q4" value="d"> Fried Chicken 🍗<br>
+
+                <div class="question-box">5. How does Allysa like their coffee?</div>
+                <input type="radio" name="q5" value="a"> Black and strong ☕<br>
+                <input type="radio" name="q5" value="b"> With a splash of milk 🥛<br>
+                <input type="radio" name="q5" value="c"> Sweet with sugar and cream 🍯<br>
+                <input type="radio" name="q5" value="d"> Iced, with lots of ice 🧊<br>
+
+                <br>
+                <input type="submit" value="Submit Answers">
+            </form>
+        </section>
+        <footer>
+            <p>Copyright &copy; 2025, All Rights Reserved</p>
+        </footer>
+    </div>
+
+    <script>
+        function submitAnswers() {
+            var total = 5;
+            var score = 0;
+            var answers = ["b", "a", "b", "a", "d"];
+
+            // Get User Input
+            var userAnswers = [];
+            for (var i = 1; i <= total; i++) {
+                var answer = document.querySelector('input[name="q' + i + '"]:checked');
+                if (!answer) {
+                    alert('⚠️ You missed question ' + i);
+                    return false;
+                }
+                userAnswers.push(answer.value);
+            }
+
+            // Check Answers
+            for (var i = 0; i < total; i++) {
+                if (userAnswers[i] === answers[i]) {
+                    score++;
+                }
+            }
+
+            // Show Score in an Alert Box
+            alert(`🎉 You scored ${score} out of ${total}!`);
+
+            return false; // Prevent form submission
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #070F2B; /* Dark background */
+            font-family: Arial, sans-serif;
+            color: #FAF7F0; /* Light text color */
+            text-align: center;
+        }
+        #clock-container {
+            padding: 30px;
+            background: rgba(27, 26, 85, 0.8); /* Semi-transparent dark blue */
+            border-radius: 15px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.6); /* Shadow for depth */
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #535C91; /* Soft blue for title */
+        }
+        #time {
+            font-size: 4rem; /* Larger font size for the time */
+            font-weight: bold;
+            color: #9290C3; /* Light lavender color for time */
+        }
+    </style>
+</head>
+<body onload="digitalClock()">
+    <div id="clock-container">
+        <h1>Digital Clock</h1>
+        <div id="time"></div>
+    </div>
+
+    <script type="text/javascript">
+        function digitalClock() {
+            var strtoday = new Date();
+            var inthours = strtoday.getHours();
+            var intminutes = strtoday.getMinutes();
+            var intseconds = strtoday.getSeconds();
+            var period = "AM";
+
+            if (inthours >= 12) {
+                period = "PM";
+            }
+            if (inthours > 12) {
+                inthours -= 12;
+            }
+            if (inthours == 0) {
+                inthours = 12;
+            }
+            if (intseconds < 10) {
+                intseconds = "0" + intseconds;
+            }
+            if (intminutes < 10) {
+                intminutes = "0" + intminutes;
+            }
+
+            document.getElementById("time").innerHTML = inthours + ":" + intminutes + ":" + intseconds + " " + period;
+
+            setTimeout(digitalClock, 1000); // Update every second
+        }
+    </script>
+</body>
+</html>
